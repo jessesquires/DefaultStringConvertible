@@ -1,0 +1,55 @@
+language: objective-c
+osx_image: xcode7.3
+
+env:
+   global:
+   - LANG=en_US.UTF-8
+
+   - PROJECT="DefaultStringConvertible.xcodeproj"
+   - IOS_SCHEME="DefaultStringConvertible-iOS"
+   - OSX_SCHEME="DefaultStringConvertible-OSX"
+   - TVOS_SCHEME="DefaultStringConvertible-tvOS"
+   - WATCHOS_SCHEME="DefaultStringConvertible-watchOS"
+
+   - IOS_SDK=iphonesimulator9.3
+   - OSX_SDK=macosx10.11
+   - TVOS_SDK=appletvsimulator9.2
+   - WATCHOS_SDK=watchsimulator2.2
+
+   matrix:
+   - DESTINATION="OS=8.1,name=iPhone 4s"      SDK="$IOS_SDK" SCHEME="$IOS_SCHEME" RUN_TESTS="YES" POD_LINT="YES"
+   - DESTINATION="OS=8.2,name=iPhone 5"       SDK="$IOS_SDK" SCHEME="$IOS_SCHEME" RUN_TESTS="YES" POD_LINT="NO"
+   - DESTINATION="OS=8.3,name=iPhone 5s"      SDK="$IOS_SDK" SCHEME="$IOS_SCHEME" RUN_TESTS="YES" POD_LINT="NO"
+   - DESTINATION="OS=8.4,name=iPhone 6"       SDK="$IOS_SDK" SCHEME="$IOS_SCHEME" RUN_TESTS="YES" POD_LINT="NO"
+   - DESTINATION="OS=9.0,name=iPhone 6s"      SDK="$IOS_SDK" SCHEME="$IOS_SCHEME" RUN_TESTS="YES" POD_LINT="NO"
+   - DESTINATION="OS=9.1,name=iPhone 6 Plus"  SDK="$IOS_SDK" SCHEME="$IOS_SCHEME" RUN_TESTS="YES" POD_LINT="NO"
+   - DESTINATION="OS=9.2,name=iPhone 6s Plus" SDK="$IOS_SDK" SCHEME="$IOS_SCHEME" RUN_TESTS="YES" POD_LINT="NO"
+   - DESTINATION="OS=9.3,name=iPad Air"       SDK="$IOS_SDK" SCHEME="$IOS_SCHEME" RUN_TESTS="YES" POD_LINT="NO"
+
+   - DESTINATION="arch=x86_64" SDK="$OSX_SDK" SCHEME="$OSX_FRAMEWORK_SCHEME" RUN_TESTS="YES" POD_LINT="NO"
+
+   - DESTINATION="OS=9.0,name=Apple TV 1080p" SDK="$TVOS_SDK" SCHEME="$TVOS_SCHEME" RUN_TESTS="YES" POD_LINT="NO"
+
+   - DESTINATION="OS=2.0,name=Apple Watch - 38mm" SDK="$WATCHOS_SDK" SCHEME="$WATCHOS_SCHEME" RUN_TESTS="NO" POD_LINT="NO"
+   - DESTINATION="OS=2.2,name=Apple Watch - 42mm" SDK="$WATCHOS_SDK" SCHEME="$WATCHOS_SCHEME" RUN_TESTS="NO" POD_LINT="NO"
+
+script:
+
+- if [ $POD_LINT == "YES" ]; then
+      pod spec lint;
+      pod lib lint;
+  fi
+
+- if [ $RUN_TESTS == "YES" ]; then
+      xcodebuild test -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO | xcpretty -c;
+  else
+      xcodebuild clean build -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO | xcpretty -c;
+  fi
+
+# Build for reporting test coverage
+- if [ $RUN_TESTS == "YES" ]; then
+      xcodebuild test -project DefaultStringConvertible.xcodeproj -scheme "DefaultStringConvertible-iOS" -sdk iphonesimulator;
+  fi
+
+after_success:
+- bash <(curl -s https://codecov.io/bash)
