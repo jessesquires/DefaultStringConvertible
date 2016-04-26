@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8870AA6F1CCEFD66006CE7D0"
-               BuildableName = "DefaultStringConvertible.framework"
-               BlueprintName = "DefaultStringConvertible-OSX"
+               BlueprintIdentifier = "8870AA8E1CCEFE38006CE7D0"
+               BuildableName = "DefaultStringConvertible-tvOS.framework"
+               BlueprintName = "DefaultStringConvertible-tvOS"
                ReferencedContainer = "container:DefaultStringConvertible.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,9 +33,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8870AA781CCEFD66006CE7D0"
-               BuildableName = "DefaultStringConvertible-OSXTests.xctest"
-               BlueprintName = "DefaultStringConvertible-OSXTests"
+               BlueprintIdentifier = "8870AA971CCEFE38006CE7D0"
+               BuildableName = "DefaultStringConvertible-tvOSTests.xctest"
+               BlueprintName = "DefaultStringConvertible-tvOSTests"
                ReferencedContainer = "container:DefaultStringConvertible.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -43,9 +43,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8870AA6F1CCEFD66006CE7D0"
-            BuildableName = "DefaultStringConvertible.framework"
-            BlueprintName = "DefaultStringConvertible-OSX"
+            BlueprintIdentifier = "8870AA8E1CCEFE38006CE7D0"
+            BuildableName = "DefaultStringConvertible-tvOS.framework"
+            BlueprintName = "DefaultStringConvertible-tvOS"
             ReferencedContainer = "container:DefaultStringConvertible.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -65,9 +65,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8870AA6F1CCEFD66006CE7D0"
-            BuildableName = "DefaultStringConvertible.framework"
-            BlueprintName = "DefaultStringConvertible-OSX"
+            BlueprintIdentifier = "8870AA8E1CCEFE38006CE7D0"
+            BuildableName = "DefaultStringConvertible-tvOS.framework"
+            BlueprintName = "DefaultStringConvertible-tvOS"
             ReferencedContainer = "container:DefaultStringConvertible.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -83,9 +83,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8870AA6F1CCEFD66006CE7D0"
-            BuildableName = "DefaultStringConvertible.framework"
-            BlueprintName = "DefaultStringConvertible-OSX"
+            BlueprintIdentifier = "8870AA8E1CCEFE38006CE7D0"
+            BuildableName = "DefaultStringConvertible-tvOS.framework"
+            BlueprintName = "DefaultStringConvertible-tvOS"
             ReferencedContainer = "container:DefaultStringConvertible.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

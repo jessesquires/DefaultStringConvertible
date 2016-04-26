@@ -17,7 +17,9 @@
 //
 
 import XCTest
+
 @testable import DefaultStringConvertible
+
 
 final class DefaultStringConvertibleTests: XCTestCase {
 
