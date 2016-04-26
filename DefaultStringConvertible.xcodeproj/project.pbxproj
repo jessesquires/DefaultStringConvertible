@@ -19,6 +19,8 @@
 		8870AAA61CCEFE89006CE7D0 /* DefaultStringConvertible.h in Headers */ = {isa = PBXBuildFile; fileRef = 8870AA5F1CCEF949006CE7D0 /* DefaultStringConvertible.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8870AAA71CCEFE91006CE7D0 /* DefaultStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8870AA681CCEF9B3006CE7D0 /* DefaultStringConvertible.swift */; };
 		8870AAA81CCEFE96006CE7D0 /* DefaultStringConvertibleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8870AA621CCEF949006CE7D0 /* DefaultStringConvertibleTests.swift */; };
+		8870AAC31CCEFF93006CE7D0 /* DefaultStringConvertible.h in Headers */ = {isa = PBXBuildFile; fileRef = 8870AA5F1CCEF949006CE7D0 /* DefaultStringConvertible.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8870AAC41CCEFF9A006CE7D0 /* DefaultStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8870AA681CCEF9B3006CE7D0 /* DefaultStringConvertible.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,7 @@
 		8870AA791CCEFD66006CE7D0 /* DefaultStringConvertible-OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DefaultStringConvertible-OSXTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8870AA8F1CCEFE38006CE7D0 /* DefaultStringConvertible.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DefaultStringConvertible.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8870AA981CCEFE38006CE7D0 /* DefaultStringConvertible-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DefaultStringConvertible-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8870AABB1CCEFF41006CE7D0 /* DefaultStringConvertible.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DefaultStringConvertible.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +108,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8870AAB71CCEFF41006CE7D0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -126,6 +136,7 @@
 				8870AA791CCEFD66006CE7D0 /* DefaultStringConvertible-OSXTests.xctest */,
 				8870AA8F1CCEFE38006CE7D0 /* DefaultStringConvertible.framework */,
 				8870AA981CCEFE38006CE7D0 /* DefaultStringConvertible-tvOSTests.xctest */,
+				8870AABB1CCEFF41006CE7D0 /* DefaultStringConvertible.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -173,6 +184,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				8870AAA61CCEFE89006CE7D0 /* DefaultStringConvertible.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8870AAB81CCEFF41006CE7D0 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8870AAC31CCEFF93006CE7D0 /* DefaultStringConvertible.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +306,24 @@
 			productReference = 8870AA981CCEFE38006CE7D0 /* DefaultStringConvertible-tvOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		8870AABA1CCEFF41006CE7D0 /* DefaultStringConvertible-watchOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8870AAC21CCEFF41006CE7D0 /* Build configuration list for PBXNativeTarget "DefaultStringConvertible-watchOS" */;
+			buildPhases = (
+				8870AAB61CCEFF41006CE7D0 /* Sources */,
+				8870AAB71CCEFF41006CE7D0 /* Frameworks */,
+				8870AAB81CCEFF41006CE7D0 /* Headers */,
+				8870AAB91CCEFF41006CE7D0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "DefaultStringConvertible-watchOS";
+			productName = "DefaultStringConvertible-watchOS";
+			productReference = 8870AABB1CCEFF41006CE7D0 /* DefaultStringConvertible.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -315,6 +352,9 @@
 					8870AA971CCEFE38006CE7D0 = {
 						CreatedOnToolsVersion = 7.3;
 					};
+					8870AABA1CCEFF41006CE7D0 = {
+						CreatedOnToolsVersion = 7.3;
+					};
 				};
 			};
 			buildConfigurationList = 8870AA3E1CCEF912006CE7D0 /* Build configuration list for PBXProject "DefaultStringConvertible" */;
@@ -335,6 +375,7 @@
 				8870AA781CCEFD66006CE7D0 /* DefaultStringConvertible-OSXTests */,
 				8870AA8E1CCEFE38006CE7D0 /* DefaultStringConvertible-tvOS */,
 				8870AA971CCEFE38006CE7D0 /* DefaultStringConvertible-tvOSTests */,
+				8870AABA1CCEFF41006CE7D0 /* DefaultStringConvertible-watchOS */,
 			);
 		};
 /* End PBXProject section */
@@ -376,6 +417,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		8870AA961CCEFE38006CE7D0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8870AAB91CCEFF41006CE7D0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -430,6 +478,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				8870AAA81CCEFE96006CE7D0 /* DefaultStringConvertibleTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8870AAB61CCEFF41006CE7D0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8870AAC41CCEFF9A006CE7D0 /* DefaultStringConvertible.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -731,6 +787,46 @@
 			};
 			name = Release;
 		};
+		8870AAC01CCEFF41006CE7D0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Sources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hexedbits.DefaultStringConvertible-watchOS";
+				PRODUCT_NAME = DefaultStringConvertible;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Debug;
+		};
+		8870AAC11CCEFF41006CE7D0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Sources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hexedbits.DefaultStringConvertible-watchOS";
+				PRODUCT_NAME = DefaultStringConvertible;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -768,6 +864,7 @@
 				8870AA831CCEFD66006CE7D0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8870AA841CCEFD66006CE7D0 /* Build configuration list for PBXNativeTarget "DefaultStringConvertible-OSXTests" */ = {
 			isa = XCConfigurationList;
@@ -776,6 +873,7 @@
 				8870AA861CCEFD66006CE7D0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8870AAA01CCEFE38006CE7D0 /* Build configuration list for PBXNativeTarget "DefaultStringConvertible-tvOS" */ = {
 			isa = XCConfigurationList;
@@ -784,12 +882,22 @@
 				8870AAA21CCEFE38006CE7D0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8870AAA31CCEFE38006CE7D0 /* Build configuration list for PBXNativeTarget "DefaultStringConvertible-tvOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8870AAA41CCEFE38006CE7D0 /* Debug */,
 				8870AAA51CCEFE38006CE7D0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8870AAC21CCEFF41006CE7D0 /* Build configuration list for PBXNativeTarget "DefaultStringConvertible-watchOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8870AAC01CCEFF41006CE7D0 /* Debug */,
+				8870AAC11CCEFF41006CE7D0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};

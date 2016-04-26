@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8870AA8E1CCEFE38006CE7D0"
-               BuildableName = "DefaultStringConvertible.framework"
-               BlueprintName = "DefaultStringConvertible-tvOS"
+               BlueprintIdentifier = "8870AABA1CCEFF41006CE7D0"
+               BuildableName = "DefaultStringConvertible-watchOS.framework"
+               BlueprintName = "DefaultStringConvertible-watchOS"
                ReferencedContainer = "container:DefaultStringConvertible.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -26,29 +26,9 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      codeCoverageEnabled = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8870AA971CCEFE38006CE7D0"
-               BuildableName = "DefaultStringConvertible-tvOSTests.xctest"
-               BlueprintName = "DefaultStringConvertible-tvOSTests"
-               ReferencedContainer = "container:DefaultStringConvertible.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8870AA8E1CCEFE38006CE7D0"
-            BuildableName = "DefaultStringConvertible.framework"
-            BlueprintName = "DefaultStringConvertible-tvOS"
-            ReferencedContainer = "container:DefaultStringConvertible.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -65,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8870AA8E1CCEFE38006CE7D0"
-            BuildableName = "DefaultStringConvertible.framework"
-            BlueprintName = "DefaultStringConvertible-tvOS"
+            BlueprintIdentifier = "8870AABA1CCEFF41006CE7D0"
+            BuildableName = "DefaultStringConvertible-watchOS.framework"
+            BlueprintName = "DefaultStringConvertible-watchOS"
             ReferencedContainer = "container:DefaultStringConvertible.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -83,9 +63,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8870AA8E1CCEFE38006CE7D0"
-            BuildableName = "DefaultStringConvertible.framework"
-            BlueprintName = "DefaultStringConvertible-tvOS"
+            BlueprintIdentifier = "8870AABA1CCEFF41006CE7D0"
+            BuildableName = "DefaultStringConvertible-watchOS.framework"
+            BlueprintName = "DefaultStringConvertible-watchOS"
             ReferencedContainer = "container:DefaultStringConvertible.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
