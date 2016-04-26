@@ -1,4 +1,5 @@
 # DefaultStringConvertible
+[![Build Status](https://secure.travis-ci.org/jessesquires/DefaultStringConvertible.svg)](http://travis-ci.org/jessesquires/DefaultStringConvertible) [![Version Status](https://img.shields.io/cocoapods/v/DefaultStringConvertible.svg)][podLink] [![license MIT](https://img.shields.io/cocoapods/l/DefaultStringConvertible.svg)][mitLink] [![codecov.io](https://img.shields.io/codecov/c/github/jessesquires/DefaultStringConvertible.svg)](http://codecov.io/github/jessesquires/DefaultStringConvertible) [![Platform](https://img.shields.io/cocoapods/p/DefaultStringConvertible.svg)][docsLink] [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 *A default `CustomStringConvertible` implementation for Swift types*
 
