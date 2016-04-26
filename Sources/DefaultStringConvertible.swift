@@ -20,7 +20,6 @@
 /**
  A better default implementation of `description`.
  Displays the type name followed by all members with labels.
- Based on [this post](http://ericasadun.com/2016/04/18/default-reflection/).
  */
 public extension CustomStringConvertible {
 
