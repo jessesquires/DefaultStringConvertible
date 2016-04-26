@@ -3,6 +3,10 @@
 
 *A default `CustomStringConvertible` implementation for Swift types*
 
+## About 
+
+Never implement `var description: String` again. Simply `import DefaultStringConvertible` and conform to `CustomStringConvertible` and get a default type description for free.
+
 > **This micro-library is based on [this post](http://ericasadun.com/2016/04/18/default-reflection/) from Erica Sadun.**
 
 ## Requirements
@@ -42,6 +46,13 @@ Read the [docs][docsLink]. Generated with [jazzy](https://github.com/realm/jazzy
 
 ````swift
 import DefaultStringConvertible
+
+class MyClass: CustomStringConvertible {
+    // ...
+    
+    // You *do not* need to implement `var description: String`
+    // by importing `DefaultStringConvertible`, you get a default `description` for free
+}
 ````
 
 ## Unit tests
