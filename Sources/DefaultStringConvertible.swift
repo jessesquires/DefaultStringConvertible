@@ -17,42 +17,46 @@
 //
 
 
-/// A better default implementation of `description`. 
-/// Displays the type name followed by all members with labels.
-/// Based on [this post](http://ericasadun.com/2016/04/18/default-reflection/).
+/**
+ A better default implementation of `description`.
+ Displays the type name followed by all members with labels.
+ Based on [this post](http://ericasadun.com/2016/04/18/default-reflection/).
+ */
 public extension CustomStringConvertible {
 
-    /**
-     Constructs a detailed description of the receiver via its `Mirror`.
+    /// Constructs and returns a detailed description of the receiver via its `Mirror`.
+    public var defaultDescription: String {
+        let mirror = Mirror(reflecting: self)
+        var children = Array(mirror.children)
+        
+        var superclassMirror = mirror.superclassMirror()
+        repeat {
+            if let superChildren = superclassMirror?.children {
+                children.appendContentsOf(superChildren)
+            }
+            superclassMirror = superclassMirror?.superclassMirror()
+        } while superclassMirror != nil
 
-     - parameter instance: The caller.
-
-     - returns: A detailed description of the receiver
-     */
-    public func defaultDescription<T>(instance: T) -> String {
-        let mirror = Mirror(reflecting: instance)
-        let chunks = mirror.children.map({
-            (label: String?, value: Any) -> String in
+        let chunks = children.map { (label: String?, value: Any) -> String in
             if let label = label {
                 if value is String {
                     return "\(label): \"\(value)\""
                 }
                 return "\(label): \(value)"
-            } else {
-                return "\(value)"
             }
-        })
+            return "\(value)"
+        }
 
         if chunks.count > 0 {
             let chunksString = chunks.joinWithSeparator(", ")
             return "\(mirror.subjectType)(\(chunksString))"
         }
 
-        return "\(instance)"
+        return "\(self.dynamicType)"
     }
 
     /// Returns the value from `defaultDescription`.
     public var description: String {
-        return defaultDescription(self)
+        return defaultDescription
     }
 }

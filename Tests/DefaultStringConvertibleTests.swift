@@ -23,13 +23,44 @@ import DefaultStringConvertible
 
 final class DefaultStringConvertibleTests: XCTestCase {
 
-    func test_thatClassProvidesDefaultDescription() {
-        let c = MyClass()
+    func test_thatClass_providesDefaultDescription_1() {
+        let c = MyClass1()
         let description = c.description
 
-        XCTAssertEqual(description, "MyClass(myString: \"my string var\", myInt: 666, myDouble: 42.0, myChar: c)")
-
+        XCTAssertEqual(description, "MyClass1(myString: \"my string var\", myInt: 666, myDouble: 42.0, myChar: c)")
         print("\n", c, "\n")
+    }
+
+    func test_thatClass_providesDefaultDescription_2() {
+        let c = MyClass2()
+        let description = c.description
+
+        XCTAssertEqual(description, "MyClass2")
+        print("\n", c, "\n")
+    }
+
+    func test_thatClass_providesDefaultDescription_3() {
+        let c = MyClass3()
+        let description = c.description
+
+        XCTAssertEqual(description, "MyClass3(myBool: true, myString: \"my string var\", myInt: 0, myDouble: 42.0, myChar: c)")
+        print("\n", c, "\n")
+    }
+
+    func test_thatClass_providesDefaultDescription_4() {
+        let c = MyClass4()
+        let description = c.description
+
+        XCTAssertEqual(description, "MyClass4(myBool: true, myString: \"my string var\", myInt: 0, myDouble: 42.0, myChar: c)")
+        print("\n", c, "\n")
+    }
+
+    func test_thatStruct_providesDefaultDescription_1() {
+        let s = MyStruct1()
+        let description = s.description
+
+        XCTAssertEqual(description, "MyStruct1(myString: \"my string var\", myInt: 666, myDouble: 42.0, myChar: x, myBool: false)")
+        print("\n", s, "\n")
     }
 }
 
@@ -37,10 +68,41 @@ final class DefaultStringConvertibleTests: XCTestCase {
 
 // MARK: Fakes
 
-class MyClass: CustomStringConvertible {
+class MyClass1: CustomStringConvertible {
 
     let myString = "my string var"
-    let myInt = 666
+    var myInt = 666
     let myDouble = 42.0
     let myChar = Character("c")
 }
+
+
+class MyClass2: CustomStringConvertible {
+    
+}
+
+
+class MyClass3: MyClass1 {
+
+    let myBool = true
+
+    override init() {
+        super.init()
+        myInt = 0
+    }
+}
+
+
+class MyClass4: MyClass3 {
+
+}
+
+
+struct MyStruct1: CustomStringConvertible {
+    let myString = "my string var"
+    var myInt = 666
+    let myDouble = 42.0
+    let myChar = Character("x")
+    let myBool = false
+}
+
