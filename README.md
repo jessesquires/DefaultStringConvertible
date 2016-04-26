@@ -3,7 +3,7 @@
 
 *A default `CustomStringConvertible` implementation for Swift types*
 
-> **Based on [this post](http://ericasadun.com/2016/04/18/default-reflection/) from Erica Sadun.**
+> **This micro-library is based on [this post](http://ericasadun.com/2016/04/18/default-reflection/) from Erica Sadun.**
 
 ## Requirements
 
