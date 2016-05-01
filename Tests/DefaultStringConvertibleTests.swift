@@ -62,7 +62,80 @@ final class DefaultStringConvertibleTests: XCTestCase {
         XCTAssertEqual(description, "MyStruct1(myString: \"my string var\", myInt: 666, myDouble: 42.0, myChar: x, myBool: false)")
         print("\n", s, "\n")
     }
+
+    func test_thatStruct_providesCustomDescription() {
+        let v = OtherStruct()
+        let deepDescription = v.description
+
+        XCTAssertEqual(deepDescription, "OtherStruct: override description")
+        print("\n", deepDescription, "\n")
+
+    }
+
+    func test_thatStruct_providesDeepDescription() {
+        let v = SomeStruct(prop1: 4, prop2: "hey there")
+        let deepDescription = v.deepDescription
+
+        XCTAssertEqual(deepDescription, "<SomeStruct> {\r    prop1: 4,\r    prop2: \"hey there\"\r}")
+        print("\n", deepDescription, "\n")
+
+    }
+
+    func test_thatEnum_providesDeepDescription() {
+        let v = SomeEnum.Case3(value1: nil)
+        let deepDescription = v.deepDescription
+
+        XCTAssertEqual(deepDescription, "SomeEnum.Case3(nil)")
+        print("\n", deepDescription, "\n")
+
+    }
+
+    func test_thatClass_providesDeepDescription() {
+        let v = SomeClass(prop1: [1, 2, 3], prop2: [0, "hello world", NSDictionary()])
+        let deepDescription = v.deepDescription
+
+        XCTAssertEqual(deepDescription,
+                       "<SomeClass> {\r    prop1: [\r        1,\r        2,\r        3\r    ],\r    prop2: "
+                        + "[\r        0,\r        \"hello world\",\r        [:]\r    ]\r}")
+        print("\n", deepDescription, "\n")
+    }
+
+    func test_thatInherittingClass_providesDeepDescription() {
+        let v = InheritingClass(
+            prop1: [0],
+            prop2: [SomeClass.self, InheritingClass.self],
+            prop3: .Case2(value1: -1, value2: false),
+            prop4: NSArray(array: [0, "goodbye", NSNumber(float: 0.66)]),
+            prop5: (NSNumber(double: 6.66), "nsstringgg")
+        )
+        let deepDescription = v.deepDescription
+
+        XCTAssertEqual(deepDescription,
+                       "<InheritingClass> {\r    prop3: SomeEnum.Case2(-1, false),\r    prop4: [\r        0,\r"
+                        + "        \"goodbye\",\r        0\r    ],\r    prop5: (6, \"nsstringgg\"),\r    prop1: [\r        0\r    ],\r"
+                        + "    prop2: [\r        SomeClass,\r        InheritingClass\r    ]\r}")
+        print("\n", deepDescription, "\n")
+    }
+
+    func test_thatDictionary_providesDeepDescription() {
+        let v: [String: Any] = [
+            "someStruct": SomeStruct(prop1: 4, prop2: "hey there"),
+            "someEnum": SomeEnum.Case3(value1: nil),
+            "someClass": SomeClass(prop1: [1, 2, 3], prop2: [0, "hello world"]),
+            "otherStruct": OtherStruct()
+        ]
+        let deepDescription = v.deepDescription
+
+        XCTAssertEqual(deepDescription,
+                       "[\r    \"someEnum\": SomeEnum.Case3(nil),\r    \"someStruct\": <SomeStruct> {\r        prop1: 4,\r"
+            + "        prop2: \"hey there\"\r    },\r    \"otherStruct\": <OtherStruct> OtherStruct: override description,\r"
+            + "    \"someClass\": <SomeClass> {\r        prop1: [\r            1,\r            2,\r            3\r        ],\r"
+            + "        prop2: [\r            0,\r            \"hello world\"\r        ]\r    }\r]")
+        print("\n", deepDescription, "\n")
+    }
 }
+
+
 
 
 
@@ -78,7 +151,7 @@ class MyClass1: CustomStringConvertible {
 
 
 class MyClass2: CustomStringConvertible {
-    
+
 }
 
 
@@ -106,3 +179,47 @@ struct MyStruct1: CustomStringConvertible {
     let myBool = false
 }
 
+
+struct SomeStruct: CustomStringConvertible {
+    let prop1: Int
+    let prop2: String
+}
+
+
+enum SomeEnum: CustomStringConvertible {
+    case Case1
+    case Case2(value1: Int, value2: Bool)
+    case Case3(value1: String?)
+}
+
+
+class SomeClass: CustomStringConvertible {
+    let prop1: [Int]
+    var prop2: [Any]
+
+    init(prop1: [Int], prop2: [Any]) {
+        self.prop1 = prop1
+        self.prop2 = prop2
+    }
+}
+
+
+class InheritingClass: SomeClass {
+    let prop3: SomeEnum
+    let prop4: NSArray
+    let prop5: (NSNumber, NSString)
+
+    init(prop1: [Int], prop2: [Any], prop3: SomeEnum, prop4: NSArray, prop5: (NSNumber, NSString)) {
+        self.prop3 = prop3
+        self.prop4 = prop4
+        self.prop5 = prop5
+        super.init(prop1: prop1, prop2: prop2)
+    }
+}
+
+
+struct OtherStruct: CustomStringConvertible {
+    var description: String {
+        return "OtherStruct: override description"
+    }
+}

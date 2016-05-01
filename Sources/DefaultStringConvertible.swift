@@ -25,38 +25,12 @@ public extension CustomStringConvertible {
 
     /// Constructs and returns a detailed description of the receiver via its `Mirror`.
     public var defaultDescription: String {
-        let mirror = Mirror(reflecting: self)
-        var children = Array(mirror.children)
-        
-        var superclassMirror = mirror.superclassMirror()
-        repeat {
-            if let superChildren = superclassMirror?.children {
-                children.appendContentsOf(superChildren)
-            }
-            superclassMirror = superclassMirror?.superclassMirror()
-        } while superclassMirror != nil
-
-        let chunks = children.map { (label: String?, value: Any) -> String in
-            if let label = label {
-                if value is String {
-                    return "\(label): \"\(value)\""
-                }
-                return "\(label): \(value)"
-            }
-            return "\(value)"
-        }
-
-        if chunks.count > 0 {
-            let chunksString = chunks.joinWithSeparator(", ")
-            return "\(mirror.subjectType)(\(chunksString))"
-        }
-
-        return "\(self.dynamicType)"
+        return generateDefaultDescription(self)
     }
 
-    /// Constructs and returns a recursive (Playground-sidebar-esque) description of the receiver
+    /// Constructs and returns a recursive description of the receiver, similar to a Playgrounds sidebar description.
     public var deepDescription: String {
-        return DefaultStringConvertible.deepDescription(self)
+        return generateDeepDescription(self)
     }
 
     /// Returns the value from `defaultDescription`.
@@ -65,7 +39,40 @@ public extension CustomStringConvertible {
     }
 }
 
-private func deepDescription(any: Any) -> String {
+
+private func generateDefaultDescription(any: Any) -> String {
+    let mirror = Mirror(reflecting: any)
+    var children = Array(mirror.children)
+
+    var superclassMirror = mirror.superclassMirror()
+    repeat {
+        if let superChildren = superclassMirror?.children {
+            children.appendContentsOf(superChildren)
+        }
+        superclassMirror = superclassMirror?.superclassMirror()
+    } while superclassMirror != nil
+
+    let chunks = children.map { (label: String?, value: Any) -> String in
+        if let label = label {
+            if value is String {
+                return "\(label): \"\(value)\""
+            }
+            return "\(label): \(value)"
+        }
+        return "\(value)"
+    }
+
+    if chunks.count > 0 {
+        let chunksString = chunks.joinWithSeparator(", ")
+        return "\(mirror.subjectType)(\(chunksString))"
+    }
+
+    return "\(any.dynamicType)"
+}
+
+
+private func generateDeepDescription(any: Any) -> String {
+
     func indentedString(string: String) -> String {
         return string.characters
             .split("\r")
@@ -129,55 +136,57 @@ private func deepDescription(any: Any) -> String {
 
         for (index, property) in properties.enumerate() {
             if property.label!.characters.first! == "." {
-                string += deepDescription(property.value)
+                string += generateDeepDescription(property.value)
             } else {
-                string += "\(property.label!): \(deepDescription(property.value))"
+                string += "\(property.label!): \(generateDeepDescription(property.value))"
             }
 
             string += (index < properties.count - 1 ? ", " : "")
         }
-
         return string + ")"
+
     case .Collection, .Set:
         if properties.isEmpty { return "[]" }
 
         var string = "["
 
         for (index, property) in properties.enumerate() {
-            string += indentedString(deepDescription(property.value) + (index < properties.count - 1 ? ",\r" : ""))
+            string += indentedString(generateDeepDescription(property.value) + (index < properties.count - 1 ? ",\r" : ""))
         }
-
         return string + "\r]"
+
     case .Dictionary:
-        if properties.isEmpty { return "[:]" }
+        if properties.isEmpty {
+            return "[:]"
+        }
 
         var string = "["
-
         for (index, property) in properties.enumerate() {
             let pair = Array(Mirror(reflecting: property.value).children)
-
-            string += indentedString("\(deepDescription(pair[0].value)): \(deepDescription(pair[1].value))" + (index < properties.count - 1 ? ",\r" : ""))
+            string += indentedString("\(generateDeepDescription(pair[0].value)): \(generateDeepDescription(pair[1].value))"
+                + (index < properties.count - 1 ? ",\r" : ""))
         }
-
         return string + "\r]"
+
     case .Enum:
         if let any = any as? CustomDebugStringConvertible {
             return any.debugDescription
         }
 
-        if properties.isEmpty { return "\(mirror.subjectType)." + String(any) }
+        if properties.isEmpty {
+            return "\(mirror.subjectType)." + String(any)
+        }
 
         var string = "\(mirror.subjectType).\(properties.first!.label!)"
-
-        let associatedValueString = deepDescription(properties.first!.value)
+        let associatedValueString = generateDeepDescription(properties.first!.value)
 
         if associatedValueString.characters.first! == "(" {
             string += associatedValueString
         } else {
             string += "(\(associatedValueString))"
         }
-
         return string
+
     case .Struct, .Class:
         if let any = any as? CustomDebugStringConvertible {
             return any.debugDescription
@@ -193,14 +202,13 @@ private func deepDescription(any: Any) -> String {
         } while superclassMirror != nil
 
         if properties.isEmpty { return "\(typeName)\(String(any))" }
-
         var string = "\(typeName){"
-
         for (index, property) in properties.enumerate() {
-            string += indentedString("\(property.label!): \(deepDescription(property.value))" + (index < properties.count - 1 ? ",\r" : ""))
+            string += indentedString("\(property.label!): \(generateDeepDescription(property.value))" + (index < properties.count - 1 ? ",\r" : ""))
         }
-
         return string + "\r}"
-    case .Optional: fatalError()
+
+    case .Optional:
+        return generateDefaultDescription(any)
     }
 }
