@@ -119,18 +119,13 @@ final class DefaultStringConvertibleTests: XCTestCase {
 
     func test_thatDictionary_providesDeepDescription() {
         let v: [String: Any] = [
-            "someStruct": SomeStruct(prop1: 4, prop2: "hey there"),
-            "someEnum": SomeEnum.Case3(value1: nil),
             "someClass": SomeClass(prop1: [1, 2, 3], prop2: [0, "hello world"]),
-            "otherStruct": OtherStruct()
-        ]
+            ]
         let deepDescription = v.deepDescription
 
         XCTAssertEqual(deepDescription,
-                       "[\r    \"someEnum\": SomeEnum.Case3(nil),\r    \"someStruct\": <SomeStruct> {\r        prop1: 4,\r"
-            + "        prop2: \"hey there\"\r    },\r    \"otherStruct\": <OtherStruct> OtherStruct: override description,\r"
-            + "    \"someClass\": <SomeClass> {\r        prop1: [\r            1,\r            2,\r            3\r        ],\r"
-            + "        prop2: [\r            0,\r            \"hello world\"\r        ]\r    }\r]")
+                       "[\r    \"someClass\": <SomeClass> {\r        prop1: [\r            1,\r            2,\r            3\r"
+                        + "        ],\r        prop2: [\r            0,\r            \"hello world\"\r        ]\r    }\r]")
         print("\n", deepDescription, "\n")
     }
 }
