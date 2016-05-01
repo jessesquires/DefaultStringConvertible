@@ -900,6 +900,7 @@
 				8870AAC11CCEFF41006CE7D0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
