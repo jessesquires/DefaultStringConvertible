@@ -1,4 +1,5 @@
 language: swift
+os: osx
 osx_image: xcode8
 
 env:
