@@ -11,12 +11,12 @@ Never implement `var description: String` again. Simply `import DefaultStringCon
 
 ## Requirements
 
-* Xcode 7.3+
+* Xcode 8+
 * iOS 8.0+
 * OSX 10.10+
 * tvOS 9.0+
 * watchOS 2.0+
-* Swift 2.2+
+* Swift 3+
 
 ## Installation
 

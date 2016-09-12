@@ -82,10 +82,10 @@ final class DefaultStringConvertibleTests: XCTestCase {
     }
 
     func test_thatEnum_providesDeepDescription() {
-        let v = SomeEnum.Case3(value1: nil)
+        let v = SomeEnum.case3(value1: nil)
         let deepDescription = v.deepDescription
 
-        XCTAssertEqual(deepDescription, "SomeEnum.Case3(nil)")
+        XCTAssertEqual(deepDescription, "SomeEnum.case3(nil)")
         print("\n", deepDescription, "\n")
 
     }
@@ -104,14 +104,14 @@ final class DefaultStringConvertibleTests: XCTestCase {
         let v = InheritingClass(
             prop1: [0],
             prop2: [SomeClass.self, InheritingClass.self],
-            prop3: .Case2(value1: -1, value2: false),
-            prop4: NSArray(array: [0, "goodbye", NSNumber(float: 0.66)]),
-            prop5: (NSNumber(double: 6.66), "nsstringgg")
+            prop3: .case2(value1: -1, value2: false),
+            prop4: NSArray(array: [0, "goodbye", NSNumber(value: 0.66 as Float)]),
+            prop5: (NSNumber(value: 6.66 as Double), "nsstringgg")
         )
         let deepDescription = v.deepDescription
 
         XCTAssertEqual(deepDescription,
-                       "<InheritingClass> {\r    prop3: SomeEnum.Case2(-1, false),\r    prop4: [\r        0,\r"
+                       "<InheritingClass> {\r    prop3: SomeEnum.case2(-1, false),\r    prop4: [\r        0,\r"
                         + "        \"goodbye\",\r        0\r    ],\r    prop5: (6, \"nsstringgg\"),\r    prop1: [\r        0\r    ],\r"
                         + "    prop2: [\r        SomeClass,\r        InheritingClass\r    ]\r}")
         print("\n", deepDescription, "\n")
@@ -182,9 +182,9 @@ struct SomeStruct: CustomStringConvertible {
 
 
 enum SomeEnum: CustomStringConvertible {
-    case Case1
-    case Case2(value1: Int, value2: Bool)
-    case Case3(value1: String?)
+    case case1
+    case case2(value1: Int, value2: Bool)
+    case case3(value1: String?)
 }
 
 
