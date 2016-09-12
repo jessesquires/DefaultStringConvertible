@@ -48,11 +48,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8706E6D61D87729C00097172 /* LinuxMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinuxMain.swift; sourceTree = "<group>"; };
 		8870AA441CCEF912006CE7D0 /* DefaultStringConvertible.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DefaultStringConvertible.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8870AA4E1CCEF912006CE7D0 /* DefaultStringConvertible-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DefaultStringConvertible-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8870AA5F1CCEF949006CE7D0 /* DefaultStringConvertible.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultStringConvertible.h; sourceTree = "<group>"; };
 		8870AA601CCEF949006CE7D0 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8870AA621CCEF949006CE7D0 /* DefaultStringConvertibleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultStringConvertibleTests.swift; sourceTree = "<group>"; };
+		8870AA621CCEF949006CE7D0 /* DefaultStringConvertibleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DefaultStringConvertibleTests.swift; path = DefaultStringConvertibleTests/DefaultStringConvertibleTests.swift; sourceTree = "<group>"; };
 		8870AA631CCEF949006CE7D0 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8870AA681CCEF9B3006CE7D0 /* DefaultStringConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultStringConvertible.swift; sourceTree = "<group>"; };
 		8870AA701CCEFD66006CE7D0 /* DefaultStringConvertible.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DefaultStringConvertible.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				8870AA621CCEF949006CE7D0 /* DefaultStringConvertibleTests.swift */,
+				8706E6D61D87729C00097172 /* LinuxMain.swift */,
 				8870AA631CCEF949006CE7D0 /* Info.plist */,
 			);
 			path = Tests;

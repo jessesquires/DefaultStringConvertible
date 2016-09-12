@@ -22,6 +22,22 @@ import DefaultStringConvertible
 
 
 final class DefaultStringConvertibleTests: XCTestCase {
+    
+    static var allTests = {
+        return [
+            ("test_thatClass_providesDefaultDescription_1", test_thatClass_providesDefaultDescription_1),
+            ("test_thatClass_providesDefaultDescription_2", test_thatClass_providesDefaultDescription_2),
+            ("test_thatClass_providesDefaultDescription_3", test_thatClass_providesDefaultDescription_3),
+            ("test_thatClass_providesDefaultDescription_4", test_thatClass_providesDefaultDescription_4),
+            ("test_thatStruct_providesDefaultDescription_1", test_thatStruct_providesDefaultDescription_1),
+            ("test_thatStruct_providesCustomDescription", test_thatStruct_providesCustomDescription),
+            ("test_thatStruct_providesDeepDescription", test_thatStruct_providesDeepDescription),
+            ("test_thatEnum_providesDeepDescription", test_thatEnum_providesDeepDescription),
+            ("test_thatClass_providesDeepDescription", test_thatClass_providesDeepDescription),
+            ("test_thatInherittingClass_providesDeepDescription", test_thatInherittingClass_providesDeepDescription),
+            ("test_thatDictionary_providesDeepDescription", test_thatDictionary_providesDeepDescription)
+        ]
+    }()
 
     func test_thatClass_providesDefaultDescription_1() {
         let c = MyClass1()
