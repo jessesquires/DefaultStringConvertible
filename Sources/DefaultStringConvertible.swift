@@ -221,7 +221,7 @@ private func generateDeepDescription(_ any: Any) -> String {
             return prefix == String(characters.prefix(prefix.characters.count))
         }
         
-        public func hasSuffix(suffix: String) -> Bool {
+        public func hasSuffix(_ suffix: String) -> Bool {
             return suffix == String(characters.suffix(suffix.characters.count))
         }
     }
