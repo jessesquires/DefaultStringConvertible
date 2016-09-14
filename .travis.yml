@@ -1,6 +1,9 @@
 language: swift
-os: osx
+
 osx_image: xcode8
+
+sudo: required
+dist: trusty
 
 env:
    global:
@@ -17,38 +20,60 @@ env:
    - TVOS_SDK=appletvsimulator10.0
    - WATCHOS_SDK=watchsimulator3.0
 
-   matrix:
-   - DESTINATION="OS=8.2,name=iPhone 5"       SDK="$IOS_SDK" SCHEME="$IOS_SCHEME" RUN_TESTS="YES" POD_LINT="NO"
-   - DESTINATION="OS=8.3,name=iPhone 5s"      SDK="$IOS_SDK" SCHEME="$IOS_SCHEME" RUN_TESTS="YES" POD_LINT="NO"
-   - DESTINATION="OS=8.4,name=iPhone 6"       SDK="$IOS_SDK" SCHEME="$IOS_SCHEME" RUN_TESTS="YES" POD_LINT="NO"
-   - DESTINATION="OS=9.0,name=iPhone 6s"      SDK="$IOS_SDK" SCHEME="$IOS_SCHEME" RUN_TESTS="YES" POD_LINT="NO"
-   - DESTINATION="OS=9.1,name=iPhone 6 Plus"  SDK="$IOS_SDK" SCHEME="$IOS_SCHEME" RUN_TESTS="YES" POD_LINT="NO"
-   - DESTINATION="OS=9.2,name=iPhone 6s Plus" SDK="$IOS_SDK" SCHEME="$IOS_SCHEME" RUN_TESTS="YES" POD_LINT="NO"
-   - DESTINATION="OS=9.3,name=iPad Air"       SDK="$IOS_SDK" SCHEME="$IOS_SCHEME" RUN_TESTS="YES" POD_LINT="NO"
-
-   - DESTINATION="arch=x86_64" SDK="$OSX_SDK" SCHEME="$OSX_FRAMEWORK_SCHEME" RUN_TESTS="YES" POD_LINT="NO"
-
-   - DESTINATION="OS=9.0,name=Apple TV 1080p" SDK="$TVOS_SDK" SCHEME="$TVOS_SCHEME" RUN_TESTS="YES" POD_LINT="NO"
-
-   - DESTINATION="OS=2.0,name=Apple Watch - 38mm" SDK="$WATCHOS_SDK" SCHEME="$WATCHOS_SCHEME" RUN_TESTS="NO" POD_LINT="NO"
-   - DESTINATION="OS=2.2,name=Apple Watch - 42mm" SDK="$WATCHOS_SDK" SCHEME="$WATCHOS_SCHEME" RUN_TESTS="NO" POD_LINT="NO"
+matrix:
+  include:
+  - os: osx
+    env: DESTINATION="OS=8.1,name=iPhone 4s"      SDK="$IOS_SDK" SCHEME="$IOS_SCHEME" RUN_TESTS="YES" POD_LINT="YES"
+  - os: osx
+    env: DESTINATION="OS=8.2,name=iPhone 5"       SDK="$IOS_SDK" SCHEME="$IOS_SCHEME" RUN_TESTS="YES" POD_LINT="NO"
+  - os: osx
+    env: DESTINATION="OS=8.3,name=iPhone 5s"      SDK="$IOS_SDK" SCHEME="$IOS_SCHEME" RUN_TESTS="YES" POD_LINT="NO"
+  - os: osx
+    env: DESTINATION="OS=8.4,name=iPhone 6"       SDK="$IOS_SDK" SCHEME="$IOS_SCHEME" RUN_TESTS="YES" POD_LINT="NO"
+  - os: osx
+    env: DESTINATION="OS=9.0,name=iPhone 6s"      SDK="$IOS_SDK" SCHEME="$IOS_SCHEME" RUN_TESTS="YES" POD_LINT="NO"
+  - os: osx
+    env: DESTINATION="OS=9.1,name=iPhone 6 Plus"  SDK="$IOS_SDK" SCHEME="$IOS_SCHEME" RUN_TESTS="YES" POD_LINT="NO"
+  - os: osx
+    env: DESTINATION="OS=9.2,name=iPhone 6s Plus" SDK="$IOS_SDK" SCHEME="$IOS_SCHEME" RUN_TESTS="YES" POD_LINT="NO"
+  - os: osx
+    env: DESTINATION="OS=9.3,name=iPad Air"       SDK="$IOS_SDK" SCHEME="$IOS_SCHEME" RUN_TESTS="YES" POD_LINT="NO"
+  - os: osx
+    env: DESTINATION="arch=x86_64" SDK="$OSX_SDK" SCHEME="$OSX_FRAMEWORK_SCHEME" RUN_TESTS="YES" POD_LINT="NO"
+  - os: osx
+    env: DESTINATION="OS=9.0,name=Apple TV 1080p" SDK="$TVOS_SDK" SCHEME="$TVOS_SCHEME" RUN_TESTS="YES" POD_LINT="NO"
+  - os: osx
+    env: DESTINATION="OS=2.0,name=Apple Watch - 38mm" SDK="$WATCHOS_SDK" SCHEME="$WATCHOS_SCHEME" RUN_TESTS="NO" POD_LINT="NO"
+  - os: osx
+    env: DESTINATION="OS=2.2,name=Apple Watch - 42mm" SDK="$WATCHOS_SDK" SCHEME="$WATCHOS_SCHEME" RUN_TESTS="NO" POD_LINT="NO"
+  - os: linux
 
 script:
 
-- if [ $POD_LINT == "YES" ]; then
+- if [ $POD_LINT == "YES" && $TRAVIS_OS_NAME == "osx" ]; then
       pod spec lint;
       pod lib lint;
   fi
 
-- if [ $RUN_TESTS == "YES" ]; then
+- if [ $RUN_TESTS == "YES" && $TRAVIS_OS_NAME == "osx" ]; then
       xcodebuild test -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO | xcpretty -c;
   else
       xcodebuild clean build -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO | xcpretty -c;
   fi
 
 # Build for reporting test coverage
-- if [ $RUN_TESTS == "YES" ]; then
+- if [ $RUN_TESTS == "YES" && $TRAVIS_OS_NAME == "osx" ]; then
       xcodebuild test -project DefaultStringConvertible.xcodeproj -scheme "DefaultStringConvertible-iOS" -sdk iphonesimulator;
+  fi
+
+- if [ $TRAVIS_OS_NAME == "linux" ]; then
+    git clone --depth 1 https://github.com/kylef/swiftenv.git ~/.swiftenv;
+    export SWIFTENV_ROOT="$HOME/.swiftenv";
+    export PATH="$SWIFTENV_ROOT/bin:$SWIFTENV_ROOT/shims:$PATH";
+    sudo apt-get install -y clang libicu-dev uuid-dev;
+    swiftenv install;
+    swift build;
+    swift test;
   fi
 
 after_success:
