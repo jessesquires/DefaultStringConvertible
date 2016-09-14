@@ -17,7 +17,7 @@
 //
 
 import XCTest
-
+import Foundation
 import DefaultStringConvertible
 
 
@@ -34,7 +34,6 @@ final class DefaultStringConvertibleTests: XCTestCase {
             ("test_thatStruct_providesDeepDescription", test_thatStruct_providesDeepDescription),
             ("test_thatEnum_providesDeepDescription", test_thatEnum_providesDeepDescription),
             ("test_thatClass_providesDeepDescription", test_thatClass_providesDeepDescription),
-            ("test_thatInherittingClass_providesDeepDescription", test_thatInherittingClass_providesDeepDescription),
             ("test_thatDictionary_providesDeepDescription", test_thatDictionary_providesDeepDescription)
         ]
     }()
@@ -107,8 +106,15 @@ final class DefaultStringConvertibleTests: XCTestCase {
     }
 
     func test_thatClass_providesDeepDescription() {
+
+	// Since in Swift Foundation customMirror for NSDictionary is not yet implemented
+	#if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
         let v = SomeClass(prop1: [1, 2, 3], prop2: [0, "hello world", NSDictionary()])
-        let deepDescription = v.deepDescription
+	#else
+        let v = SomeClass(prop1: [1, 2, 3], prop2: [0, "hello world", [String : String]()])
+        #endif
+
+	let deepDescription = v.deepDescription
 
         XCTAssertEqual(deepDescription,
                        "<SomeClass> {\r    prop1: [\r        1,\r        2,\r        3\r    ],\r    prop2: "
@@ -116,6 +122,7 @@ final class DefaultStringConvertibleTests: XCTestCase {
         print("\n", deepDescription, "\n")
     }
 
+    #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
     func test_thatInherittingClass_providesDeepDescription() {
         let v = InheritingClass(
             prop1: [0],
@@ -132,6 +139,7 @@ final class DefaultStringConvertibleTests: XCTestCase {
                         + "    prop2: [\r        SomeClass,\r        InheritingClass\r    ]\r}")
         print("\n", deepDescription, "\n")
     }
+    #endif
 
     func test_thatDictionary_providesDeepDescription() {
         let v: [String: Any] = [
@@ -214,7 +222,8 @@ class SomeClass: CustomStringConvertible {
     }
 }
 
-
+// Since in Swift Foundation customMirror for NSNumber, NSString and NSArray is not yet implemented
+#if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
 class InheritingClass: SomeClass {
     let prop3: SomeEnum
     let prop4: NSArray
@@ -227,7 +236,7 @@ class InheritingClass: SomeClass {
         super.init(prop1: prop1, prop2: prop2)
     }
 }
-
+#endif
 
 struct OtherStruct: CustomStringConvertible {
     var description: String {
