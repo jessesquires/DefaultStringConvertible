@@ -1,7 +1,6 @@
-language: swift
+language: generic
 
 osx_image: xcode8
-
 sudo: required
 dist: trusty
 
@@ -47,6 +46,18 @@ matrix:
   - os: osx
     env: DESTINATION="OS=2.2,name=Apple Watch - 42mm" SDK="$WATCHOS_SDK" SCHEME="$WATCHOS_SCHEME" RUN_TESTS="NO" POD_LINT="NO"
   - os: linux
+  
+install:
+   - if [[ $TRAVIS_OS_NAME == "linux" ]]; then
+        git clone --depth 1 https://github.com/kylef/swiftenv.git ~/.swiftenv
+        export SWIFTENV_ROOT="$HOME/.swiftenv"
+        export PATH="$SWIFTENV_ROOT/bin:$SWIFTENV_ROOT/shims:$PATH"
+        if [ -f ".swift-version" ] || [ -n "$SWIFT_VERSION" ]; then
+           swiftenv install -s
+        else
+           swiftenv rehash
+        fi
+     fi
 
 script:
 
@@ -66,15 +77,7 @@ script:
       xcodebuild test -project DefaultStringConvertible.xcodeproj -scheme "DefaultStringConvertible-iOS" -sdk iphonesimulator;
   fi
 
-- if [[ $TRAVIS_OS_NAME == "linux" ]]; then
-    git clone --depth 1 https://github.com/kylef/swiftenv.git ~/.swiftenv;
-    export SWIFTENV_ROOT="$HOME/.swiftenv";
-    export PATH="$SWIFTENV_ROOT/bin:$SWIFTENV_ROOT/shims:$PATH";
-    sudo apt-get install -y clang libicu-dev uuid-dev;
-    swiftenv install;
-    swift build;
-    swift test;
-  fi
+- if [[ $TRAVIS_OS_NAME == "linux" ]]; then  swift build && swift test fi
 
 after_success:
 - bash <(curl -s https://codecov.io/bash)
