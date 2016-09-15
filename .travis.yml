@@ -1,4 +1,4 @@
-language: generic
+language: swift
 
 osx_image: xcode8
 sudo: required
@@ -59,16 +59,16 @@ script:
 
 - if [[ $RUN_TESTS == "YES" && $TRAVIS_OS_NAME == "osx" ]]; then
       xcodebuild test -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO | xcpretty -c;
-  else
+  elif [[ $TRAVIS_OS_NAME == "osx" ]];
       xcodebuild clean build -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO | xcpretty -c;
   fi
+  
+- if [[ $TRAVIS_OS_NAME == "linux" ]]; then swift build && swift test; fi
 
 # Build for reporting test coverage
 - if [[ $RUN_TESTS == "YES" && $TRAVIS_OS_NAME == "osx" ]]; then
       xcodebuild test -project DefaultStringConvertible.xcodeproj -scheme "DefaultStringConvertible-iOS" -sdk iphonesimulator;
   fi
-
-- if [[ $TRAVIS_OS_NAME == "linux" ]]; then swift build && swift test; fi
 
 after_success:
 - bash <(curl -s https://codecov.io/bash)
