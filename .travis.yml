@@ -59,7 +59,7 @@ script:
 
 - if [[ $RUN_TESTS == "YES" && $TRAVIS_OS_NAME == "osx" ]]; then
       xcodebuild test -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO | xcpretty -c;
-  elif [[ $TRAVIS_OS_NAME == "osx" ]];
+  elif [[ $TRAVIS_OS_NAME == "osx" ]]; then
       xcodebuild clean build -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO | xcpretty -c;
   fi
   
