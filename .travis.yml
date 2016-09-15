@@ -48,16 +48,7 @@ matrix:
   - os: linux
   
 install:
-   - if [[ $TRAVIS_OS_NAME == "linux" ]]; then \
-        git clone --depth 1 https://github.com/kylef/swiftenv.git ~/.swiftenv \
-        export SWIFTENV_ROOT="$HOME/.swiftenv" \
-        export PATH="$SWIFTENV_ROOT/bin:$SWIFTENV_ROOT/shims:$PATH" \
-        if [ -f ".swift-version" ] || [ -n "$SWIFT_VERSION" ]; then \
-           swiftenv install -s \
-        else \
-           swiftenv rehash \
-        fi \
-     fi
+   - if [[ $TRAVIS_OS_NAME == "linux" ]]; then eval "$(curl -sL https://gist.githubusercontent.com/kylef/5c0475ff02b7c7671d2a/raw/9f442512a46d7a2af7b850d65a7e9bd31edfb09b/swiftenv-install.sh)"; fi
 
 script:
 
@@ -77,7 +68,7 @@ script:
       xcodebuild test -project DefaultStringConvertible.xcodeproj -scheme "DefaultStringConvertible-iOS" -sdk iphonesimulator;
   fi
 
-- if [[ $TRAVIS_OS_NAME == "linux" ]]; then  swift build && swift test fi
+- if [[ $TRAVIS_OS_NAME == "linux" ]]; then swift build && swift test; fi
 
 after_success:
 - bash <(curl -s https://codecov.io/bash)
