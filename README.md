@@ -11,12 +11,12 @@ Never implement `var description: String` again. Simply `import DefaultStringCon
 
 ## Requirements
 
-* Xcode 7.3+
+* Swift 3
+* Xcode 8
 * iOS 8.0+
 * OSX 10.10+
 * tvOS 9.0+
 * watchOS 2.0+
-* Swift 2.2+
 
 ## Installation
 
@@ -57,7 +57,7 @@ class MyClass: CustomStringConvertible {
 
 ## Unit tests
 
-There's a suite of unit tests for `DefaultStringConvertible`. Run them from Xcode by opening `DefaultStringConvertible.xcodeproj`. These tests are well commented and serve as further documentation for how to use this library.
+There's a suite of unit tests for `DefaultStringConvertible`. Run them from Xcode by opening `DefaultStringConvertible.xcodeproj`.
 
 ## Contribute
 

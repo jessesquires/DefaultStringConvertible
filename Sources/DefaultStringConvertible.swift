@@ -40,16 +40,16 @@ public extension CustomStringConvertible {
 }
 
 
-private func generateDefaultDescription(any: Any) -> String {
+private func generateDefaultDescription(_ any: Any) -> String {
     let mirror = Mirror(reflecting: any)
     var children = Array(mirror.children)
 
-    var superclassMirror = mirror.superclassMirror()
+    var superclassMirror = mirror.superclassMirror
     repeat {
         if let superChildren = superclassMirror?.children {
-            children.appendContentsOf(superChildren)
+            children.append(contentsOf: superChildren)
         }
-        superclassMirror = superclassMirror?.superclassMirror()
+        superclassMirror = superclassMirror?.superclassMirror
     } while superclassMirror != nil
 
     let chunks = children.map { (label: String?, value: Any) -> String in
@@ -63,32 +63,32 @@ private func generateDefaultDescription(any: Any) -> String {
     }
 
     if chunks.count > 0 {
-        let chunksString = chunks.joinWithSeparator(", ")
+        let chunksString = chunks.joined(separator: ", ")
         return "\(mirror.subjectType)(\(chunksString))"
     }
 
-    return "\(any.dynamicType)"
+    return "\(type(of: any))"
 }
 
 
-private func generateDeepDescription(any: Any) -> String {
+private func generateDeepDescription(_ any: Any) -> String {
 
-    func indentedString(string: String) -> String {
+    func indentedString(_ string: String) -> String {
         return string.characters
-            .split("\r")
+            .split(separator: "\r")
             .map(String.init)
             .map { $0.isEmpty ? "" : "\r    \($0)" }
-            .joinWithSeparator("")
+            .joined(separator: "")
     }
 
-    func deepUnwrap(any: Any) -> Any? {
+    func deepUnwrap(_ any: Any) -> Any? {
         let mirror = Mirror(reflecting: any)
 
-        if mirror.displayStyle != .Optional {
+        if mirror.displayStyle != .optional {
             return any
         }
 
-        if let child = mirror.children.first where child.label == "Some" {
+        if let child = mirror.children.first , child.label == "Some" {
             return deepUnwrap(child.value)
         }
 
@@ -119,22 +119,22 @@ private func generateDeepDescription(any: Any) -> String {
 
     var properties = Array(mirror.children)
 
-    var typeName = String(mirror.subjectType)
+    var typeName = String(describing: mirror.subjectType)
     if typeName.hasSuffix(".Type") {
         typeName = ""
     } else { typeName = "<\(typeName)> " }
 
     guard let displayStyle = mirror.displayStyle else {
-        return "\(typeName)\(String(any))"
+        return "\(typeName)\(String(describing: any))"
     }
 
     switch displayStyle {
-    case .Tuple:
+    case .tuple:
         if properties.isEmpty { return "()" }
 
         var string = "("
 
-        for (index, property) in properties.enumerate() {
+        for (index, property) in properties.enumerated() {
             if property.label!.characters.first! == "." {
                 string += generateDeepDescription(property.value)
             } else {
@@ -145,36 +145,36 @@ private func generateDeepDescription(any: Any) -> String {
         }
         return string + ")"
 
-    case .Collection, .Set:
+    case .collection, .set:
         if properties.isEmpty { return "[]" }
 
         var string = "["
 
-        for (index, property) in properties.enumerate() {
+        for (index, property) in properties.enumerated() {
             string += indentedString(generateDeepDescription(property.value) + (index < properties.count - 1 ? ",\r" : ""))
         }
         return string + "\r]"
 
-    case .Dictionary:
+    case .dictionary:
         if properties.isEmpty {
             return "[:]"
         }
 
         var string = "["
-        for (index, property) in properties.enumerate() {
+        for (index, property) in properties.enumerated() {
             let pair = Array(Mirror(reflecting: property.value).children)
             string += indentedString("\(generateDeepDescription(pair[0].value)): \(generateDeepDescription(pair[1].value))"
                 + (index < properties.count - 1 ? ",\r" : ""))
         }
         return string + "\r]"
 
-    case .Enum:
+    case .enum:
         if let any = any as? CustomDebugStringConvertible {
             return any.debugDescription
         }
 
         if properties.isEmpty {
-            return "\(mirror.subjectType)." + String(any)
+            return "\(mirror.subjectType)." + String(describing: any)
         }
 
         var string = "\(mirror.subjectType).\(properties.first!.label!)"
@@ -187,28 +187,42 @@ private func generateDeepDescription(any: Any) -> String {
         }
         return string
 
-    case .Struct, .Class:
+    case .struct, .class:
         if let any = any as? CustomDebugStringConvertible {
             return any.debugDescription
         }
 
-        var superclassMirror = mirror.superclassMirror()
+        var superclassMirror = mirror.superclassMirror
         repeat {
             if let superChildren = superclassMirror?.children {
-                properties.appendContentsOf(superChildren)
+                properties.append(contentsOf: superChildren)
             }
 
-            superclassMirror = superclassMirror?.superclassMirror()
+            superclassMirror = superclassMirror?.superclassMirror
         } while superclassMirror != nil
 
-        if properties.isEmpty { return "\(typeName)\(String(any))" }
+        if properties.isEmpty { return "\(typeName)\(String(describing: any))" }
         var string = "\(typeName){"
-        for (index, property) in properties.enumerate() {
+        for (index, property) in properties.enumerated() {
             string += indentedString("\(property.label!): \(generateDeepDescription(property.value))" + (index < properties.count - 1 ? ",\r" : ""))
         }
         return string + "\r}"
 
-    case .Optional:
+    case .optional:
         return generateDefaultDescription(any)
     }
 }
+
+// Since these methods are not available in Linux
+#if !(os(macOS) || os(iOS) || os(watchOS) || os(tvOS))
+    extension String {
+        
+        public func hasPrefix(_ prefix: String) -> Bool {
+            return prefix == String(characters.prefix(prefix.characters.count))
+        }
+        
+        public func hasSuffix(_ suffix: String) -> Bool {
+            return suffix == String(characters.suffix(suffix.characters.count))
+        }
+    }
+#endif

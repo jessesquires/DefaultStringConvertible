@@ -1,5 +1,8 @@
 .DS_Store
 
+# SPM
+.build
+
 # Xcode
 
 ## Build generated
