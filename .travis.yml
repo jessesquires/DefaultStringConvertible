@@ -47,11 +47,7 @@ matrix:
 
   - language: swift
     os: osx
-    env: DESTINATION="OS=9.3,name=iPhone 7"       SDK="$IOS_SDK" SCHEME="$IOS_SCHEME" RUN_TESTS="YES" POD_LINT="NO"
-
-  - language: swift
-    os: osx
-    env: DESTINATION="OS=10.0,name=iPhone 7 Plus" SDK="$IOS_SDK" SCHEME="$IOS_SCHEME" RUN_TESTS="YES" POD_LINT="NO"
+    env: DESTINATION="OS=10.0,name=iPhone 7"      SDK="$IOS_SDK" SCHEME="$IOS_SCHEME" RUN_TESTS="YES" POD_LINT="NO"
 
   - language: swift
     os: osx
