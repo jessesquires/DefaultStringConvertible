@@ -216,7 +216,7 @@ private func generateDeepDescription(_ any: Any) -> String {
 // Since these methods are not available in Linux
 #if !(os(macOS) || os(iOS) || os(watchOS) || os(tvOS))
     extension String {
-        
+
         public func hasPrefix(_ prefix: String) -> Bool {
             return prefix == String(characters.prefix(prefix.characters.count))
         }
