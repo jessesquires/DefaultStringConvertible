@@ -3,7 +3,7 @@
 
 *A default `CustomStringConvertible` implementation for Swift types*
 
-## About 
+## About
 
 Never implement `var description: String` again. Simply `import DefaultStringConvertible` and conform to `CustomStringConvertible` and get a default type description for free.
 
@@ -40,7 +40,19 @@ github "jessesquires/DefaultStringConvertible"
 
 ## Documentation
 
-Read the [docs][docsLink]. Generated with [jazzy](https://github.com/realm/jazzy). Hosted by [GitHub Pages](https://pages.github.com). More information on the [`gh-pages`](https://github.com/jessesquires/DefaultStringConvertible/tree/gh-pages) branch.
+Read the [docs][docsLink]. Generated with [jazzy](https://github.com/realm/jazzy). Hosted by [GitHub Pages](https://pages.github.com).
+
+#### Generate
+
+````bash
+$ ./build_docs.sh
+````
+
+#### Preview
+
+````bash
+$ open index.html -a Safari
+````
 
 ## Getting Started
 
@@ -49,7 +61,7 @@ import DefaultStringConvertible
 
 class MyClass: CustomStringConvertible {
     // ...
-    
+
     // You *do not* need to implement `var description: String`
     // by importing `DefaultStringConvertible`, you get a default `description` for free
 }
