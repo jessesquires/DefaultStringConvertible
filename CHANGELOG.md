@@ -7,9 +7,9 @@ The changelog for `DefaultStringConvertible`. Also see the [releases](https://gi
 2.0.0
 -----
 
-This release closes the [2.0.0 milestone](https://github.com/jessesquires/DefaultStringConvertible/issues?q=milestone%3A2.0.0).
+This release closes the [2.0.0 milestone](https://github.com/jessesquires/DefaultStringConvertible/milestone/2?closed=1).
 
-- Migrated to Swift 3 (#3, @broadwaylamb)
+- **Migrated to Swift 3.0** (#3, thanks @broadwaylamb!)
 
 1.1.0
 -----
