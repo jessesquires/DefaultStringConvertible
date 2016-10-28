@@ -79,7 +79,7 @@ matrix:
 
 before_install:
 - if [[ $TRAVIS_OS_NAME == "osx" ]]; then
-    gem install cocoapods # travis is not always on latest version
+    gem install cocoapods; # travis is not always on latest version
   fi
 
 install:
