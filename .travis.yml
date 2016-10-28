@@ -1,5 +1,8 @@
 osx_image: xcode8
 
+cache:
+   - cocoapods
+
 env:
    global:
    - LANG=en_US.UTF-8
@@ -74,6 +77,11 @@ matrix:
     sudo: required
     dist: trusty
 
+before_install:
+- if [[ $TRAVIS_OS_NAME == "osx" ]]; then
+    gem install cocoapods # travis is not always on latest version
+  fi
+
 install:
 - if [[ $TRAVIS_OS_NAME == "linux" ]]; then
     eval "$(curl -sL https://gist.githubusercontent.com/kylef/5c0475ff02b7c7671d2a/raw/9f442512a46d7a2af7b850d65a7e9bd31edfb09b/swiftenv-install.sh)";
@@ -85,9 +93,9 @@ script:
   fi
 
 - if [[ $RUN_TESTS == "YES" && $TRAVIS_OS_NAME == "osx" ]]; then
-      xcodebuild test -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO | xcpretty -c;
+      xcodebuild analyze test -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO | xcpretty -c;
   elif [[ $TRAVIS_OS_NAME == "osx" ]]; then
-      xcodebuild clean build -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO | xcpretty -c;
+      xcodebuild build analyze -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO | xcpretty -c;
   fi
 
 - if [[ $TRAVIS_OS_NAME == "linux" ]]; then
