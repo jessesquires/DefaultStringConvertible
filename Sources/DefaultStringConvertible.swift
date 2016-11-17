@@ -88,7 +88,7 @@ private func generateDeepDescription(_ any: Any) -> String {
             return any
         }
 
-        if let child = mirror.children.first , child.label == "Some" {
+        if let child = mirror.children.first , child.label == "some" {
             return deepUnwrap(child.value)
         }
 
