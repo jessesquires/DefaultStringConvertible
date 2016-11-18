@@ -1,5 +1,5 @@
 # DefaultStringConvertible
-[![Build Status](https://secure.travis-ci.org/jessesquires/DefaultStringConvertible.svg)](http://travis-ci.org/jessesquires/DefaultStringConvertible) [![Version Status](https://img.shields.io/cocoapods/v/DefaultStringConvertible.svg)][podLink] [![license MIT](https://img.shields.io/cocoapods/l/DefaultStringConvertible.svg)][mitLink] [![codecov](https://codecov.io/gh/jessesquires/DefaultStringConvertible/branch/develop/graph/badge.svg)](https://codecov.io/gh/jessesquires/DefaultStringConvertible) [![Platform](https://img.shields.io/cocoapods/p/DefaultStringConvertible.svg)][docsLink] [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Build Status](https://secure.travis-ci.org/jessesquires/DefaultStringConvertible.svg)](http://travis-ci.org/jessesquires/DefaultStringConvertible) [![Version Status](https://img.shields.io/cocoapods/v/DefaultStringConvertible.svg)][podLink] [![license MIT](https://img.shields.io/cocoapods/l/DefaultStringConvertible.svg)][mitLink] [![codecov](https://codecov.io/gh/jessesquires/DefaultStringConvertible/branch/develop/graph/badge.svg)](https://codecov.io/gh/jessesquires/DefaultStringConvertible) [![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20macOS%20%7C%20iOS%20%7C%20watchOS%20%7C%20tvOS-lightgrey.svg)][docsLink] [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 *A default `CustomStringConvertible` implementation for Swift types*
 
@@ -17,6 +17,7 @@ Never implement `var description: String` again. Simply `import DefaultStringCon
 * OSX 10.10+
 * tvOS 9.0+
 * watchOS 2.0+
+* Ubuntu 14.04+
 
 ## Installation
 
@@ -36,6 +37,19 @@ pod 'DefaultStringConvertible', :git => 'https://github.com/jessesquires/Default
 
 ````bash
 github "jessesquires/DefaultStringConvertible"
+````
+
+#### [Swift Package Manager](https://github.com/apple/swift-package-manager)
+
+Add DefaultStringConvertible as a dependency to your `Package.swift`. For example:
+
+````swift
+let package = Package(
+    name: "YourPackageName",
+    dependencies: [
+        .Package(url: "https://github.com/jessesquires/DefaultStringConvertible.git", majorVersion: 2)
+    ]
+)
 ````
 
 ## Documentation
