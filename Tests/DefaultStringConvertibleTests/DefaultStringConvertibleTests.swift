@@ -89,10 +89,10 @@ final class DefaultStringConvertibleTests: XCTestCase {
     }
 
     func test_thatStruct_providesDeepDescription() {
-        let v = SomeStruct(prop1: 4, prop2: "hey there")
+        let v = SomeStruct(prop1: 4, prop2: "hey there", optionalProp: 2.71828)
         let deepDescription = v.deepDescription
 
-        XCTAssertEqual(deepDescription, "<SomeStruct> {\r    prop1: 4,\r    prop2: \"hey there\"\r}")
+        XCTAssertEqual(deepDescription, "<SomeStruct> {\r    prop1: 4,\r    prop2: \"hey there\",\r    optionalProp: 2.71828\r}")
         print("\n", deepDescription, "\n")
 
     }
@@ -108,13 +108,13 @@ final class DefaultStringConvertibleTests: XCTestCase {
 
     func test_thatClass_providesDeepDescription() {
 
-        let v = SomeClass(prop1: [1, 2, 3], prop2: [0, "hello world", [String : String]()])
+        let v = SomeClass(prop1: [1, 2, 3], prop2: [0, "hello world", [String : String]()], optionalProp: 2.71828)
 
         let deepDescription = v.deepDescription
 
         XCTAssertEqual(deepDescription,
                        "<SomeClass> {\r    prop1: [\r        1,\r        2,\r        3\r    ],\r    prop2: "
-                        + "[\r        0,\r        \"hello world\",\r        [:]\r    ]\r}")
+                        + "[\r        0,\r        \"hello world\",\r        [:]\r    ],\r    optionalProp: 2.71828\r}")
         print("\n", deepDescription, "\n")
     }
 
@@ -124,26 +124,27 @@ final class DefaultStringConvertibleTests: XCTestCase {
             prop2: [SomeClass.self, InheritingClass.self],
             prop3: .case2(value1: -1, value2: false),
             prop4: [0, "goodbye", 0.66],
-            prop5: (6.66, "stringgg")
+            prop5: (6.66, "stringgg"),
+            optionalProp: 2.71828
         )
         let deepDescription = v.deepDescription
 
         XCTAssertEqual(deepDescription,
                        "<InheritingClass> {\r    prop3: SomeEnum.case2(-1, false),\r    prop4: [\r        0,\r"
                         + "        \"goodbye\",\r        0.66\r    ],\r    prop5: (6.66, \"stringgg\"),\r    prop1: [\r        0\r    ],\r"
-                        + "    prop2: [\r        SomeClass,\r        InheritingClass\r    ]\r}")
+                        + "    prop2: [\r        SomeClass,\r        InheritingClass\r    ],\r    optionalProp: 2.71828\r}")
         print("\n", deepDescription, "\n")
     }
 
     func test_thatDictionary_providesDeepDescription() {
         let v: [String: Any] = [
-            "someClass": SomeClass(prop1: [1, 2, 3], prop2: [0, "hello world"]),
+            "someClass": SomeClass(prop1: [1, 2, 3], prop2: [0, "hello world"], optionalProp: 2.71828),
             ]
         let deepDescription = v.deepDescription
 
         XCTAssertEqual(deepDescription,
                        "[\r    \"someClass\": <SomeClass> {\r        prop1: [\r            1,\r            2,\r            3\r"
-                        + "        ],\r        prop2: [\r            0,\r            \"hello world\"\r        ]\r    }\r]")
+                        + "        ],\r        prop2: [\r            0,\r            \"hello world\"\r        ],\r        optionalProp: 2.71828\r    }\r]")
         print("\n", deepDescription, "\n")
     }
 }
@@ -196,6 +197,7 @@ struct MyStruct1: CustomStringConvertible {
 struct SomeStruct: CustomStringConvertible {
     let prop1: Int
     let prop2: String
+    var optionalProp: Double?
 }
 
 
@@ -209,10 +211,12 @@ enum SomeEnum: CustomStringConvertible {
 class SomeClass: CustomStringConvertible {
     let prop1: [Int]
     var prop2: [Any]
-
-    init(prop1: [Int], prop2: [Any]) {
+    var optionalProp: Double?
+    
+    init(prop1: [Int], prop2: [Any], optionalProp: Double?) {
         self.prop1 = prop1
         self.prop2 = prop2
+        self.optionalProp = optionalProp
     }
 }
 
@@ -221,11 +225,17 @@ class InheritingClass: SomeClass {
     let prop4: [Any]
     let prop5: (Double, String)
 
-    init(prop1: [Int], prop2: [Any], prop3: SomeEnum, prop4: [Any], prop5: (Double, String)) {
+    init(prop1: [Int],
+         prop2: [Any],
+         prop3: SomeEnum,
+         prop4: [Any],
+         prop5: (Double, String),
+         optionalProp: Double?) {
+        
         self.prop3 = prop3
         self.prop4 = prop4
         self.prop5 = prop5
-        super.init(prop1: prop1, prop2: prop2)
+        super.init(prop1: prop1, prop2: prop2, optionalProp: optionalProp)
     }
 }
 
