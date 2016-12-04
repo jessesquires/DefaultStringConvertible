@@ -80,6 +80,10 @@ install:
     fi
 
 script:
+  - set -e
+  - xcodebuild -version
+  - xcodebuild -showsdks
+
   - if [[ $POD_LINT == "YES" && $TRAVIS_OS_NAME == "osx" ]]; then
       gem install cocoapods && pod lib lint;
     fi
