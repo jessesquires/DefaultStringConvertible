@@ -83,7 +83,7 @@ script:
   - set -o pipefail
 
   - if [[ $POD_LINT == "YES" && $TRAVIS_OS_NAME == "osx" ]]; then
-      gem install cocoapods && pod lib lint;
+      gem install cocoapods --no-rdoc --no-ri --no-document --quiet && pod lib lint;
     fi
 
   - if [[ $RUN_TESTS == "YES" && $TRAVIS_OS_NAME == "osx" ]]; then
