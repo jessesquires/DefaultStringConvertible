@@ -51,7 +51,7 @@ matrix:
 
     - language: swift
       os: osx
-      env: DESTINATION="arch=x86_64" SDK="$OSX_SDK" SCHEME="$OSX_FRAMEWORK_SCHEME" RUN_TESTS="YES" POD_LINT="NO"
+      env: DESTINATION="arch=x86_64" SDK="$OSX_SDK" SCHEME="$OSX_SCHEME" RUN_TESTS="YES" POD_LINT="NO"
 
     - language: swift
       os: osx
