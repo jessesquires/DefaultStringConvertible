@@ -3,13 +3,13 @@ osx_image: xcode8
 env:
   global:
     - LANG=en_US.UTF-8
-    
+
     - PROJECT="DefaultStringConvertible.xcodeproj"
     - IOS_SCHEME="DefaultStringConvertible-iOS"
     - OSX_SCHEME="DefaultStringConvertible-OSX"
     - TVOS_SCHEME="DefaultStringConvertible-tvOS"
     - WATCHOS_SCHEME="DefaultStringConvertible-watchOS"
-    
+
     - IOS_SDK=iphonesimulator10.0
     - OSX_SDK=macosx10.12
     - TVOS_SDK=appletvsimulator10.0
@@ -47,7 +47,7 @@ matrix:
 
     - language: swift
       os: osx
-      env: DESTINATION="OS=10.0,name=iPhone 7"      SDK="$IOS_SDK" SCHEME="$IOS_SCHEME" RUN_TESTS="YES" POD_LINT="NO"
+      env: DESTINATION="OS=10.0,name=iPhone 7" SDK="$IOS_SDK" SCHEME="$IOS_SCHEME" RUN_TESTS="YES" POD_LINT="NO"
 
     - language: swift
       os: osx
