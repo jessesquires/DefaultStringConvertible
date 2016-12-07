@@ -215,12 +215,15 @@ private func generateDeepDescription(_ any: Any) -> String {
 
 // Since these methods are not available in Linux
 #if !(os(macOS) || os(iOS) || os(watchOS) || os(tvOS))
+    /// :nodoc:
     extension String {
 
+        /// :nodoc:
         public func hasPrefix(_ prefix: String) -> Bool {
             return prefix == String(characters.prefix(prefix.characters.count))
         }
         
+        /// :nodoc:
         public func hasSuffix(_ suffix: String) -> Bool {
             return suffix == String(characters.suffix(suffix.characters.count))
         }
