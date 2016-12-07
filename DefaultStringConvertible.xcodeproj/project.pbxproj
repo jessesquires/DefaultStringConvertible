@@ -343,6 +343,7 @@
 					8870AA4D1CCEF912006CE7D0 = {
 						CreatedOnToolsVersion = 7.3;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Manual;
 					};
 					8870AA6F1CCEFD66006CE7D0 = {
 						CreatedOnToolsVersion = 7.3;
@@ -357,6 +358,7 @@
 					};
 					8870AA971CCEFE38006CE7D0 = {
 						CreatedOnToolsVersion = 7.3;
+						ProvisioningStyle = Manual;
 					};
 					8870AABA1CCEFF41006CE7D0 = {
 						CreatedOnToolsVersion = 7.3;
@@ -655,6 +657,7 @@
 		8870AA5C1CCEF912006CE7D0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hexedbits.DefaultStringConvertibleTests;
@@ -666,6 +669,7 @@
 		8870AA5D1CCEF912006CE7D0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hexedbits.DefaultStringConvertibleTests;
@@ -793,6 +797,7 @@
 		8870AAA41CCEFE38006CE7D0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hexedbits.DefaultStringConvertible-tvOSTests";
@@ -806,6 +811,7 @@
 		8870AAA51CCEFE38006CE7D0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hexedbits.DefaultStringConvertible-tvOSTests";

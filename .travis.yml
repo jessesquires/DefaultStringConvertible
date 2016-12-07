@@ -3,13 +3,13 @@ osx_image: xcode8
 env:
   global:
     - LANG=en_US.UTF-8
-    
+
     - PROJECT="DefaultStringConvertible.xcodeproj"
     - IOS_SCHEME="DefaultStringConvertible-iOS"
     - OSX_SCHEME="DefaultStringConvertible-OSX"
     - TVOS_SCHEME="DefaultStringConvertible-tvOS"
     - WATCHOS_SCHEME="DefaultStringConvertible-watchOS"
-    
+
     - IOS_SDK=iphonesimulator10.0
     - OSX_SDK=macosx10.12
     - TVOS_SDK=appletvsimulator10.0
@@ -47,11 +47,11 @@ matrix:
 
     - language: swift
       os: osx
-      env: DESTINATION="OS=10.0,name=iPhone 7"      SDK="$IOS_SDK" SCHEME="$IOS_SCHEME" RUN_TESTS="YES" POD_LINT="NO"
+      env: DESTINATION="OS=10.0,name=iPhone 7" SDK="$IOS_SDK" SCHEME="$IOS_SCHEME" RUN_TESTS="YES" POD_LINT="NO"
 
     - language: swift
       os: osx
-      env: DESTINATION="arch=x86_64" SDK="$OSX_SDK" SCHEME="$OSX_FRAMEWORK_SCHEME" RUN_TESTS="YES" POD_LINT="NO"
+      env: DESTINATION="arch=x86_64" SDK="$OSX_SDK" SCHEME="$OSX_SCHEME" RUN_TESTS="YES" POD_LINT="NO"
 
     - language: swift
       os: osx
@@ -80,12 +80,10 @@ install:
     fi
 
 script:
-  - set -e
-  - xcodebuild -version
-  - xcodebuild -showsdks
+  - set -o pipefail
 
   - if [[ $POD_LINT == "YES" && $TRAVIS_OS_NAME == "osx" ]]; then
-      gem install cocoapods && pod lib lint;
+      gem install cocoapods --no-rdoc --no-ri --no-document --quiet && pod lib lint;
     fi
 
   - if [[ $RUN_TESTS == "YES" && $TRAVIS_OS_NAME == "osx" ]]; then
