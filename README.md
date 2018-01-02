@@ -1,3 +1,7 @@
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
+
+# :warning: DEPRECATED :warning:
+
 # DefaultStringConvertible
 [![Build Status](https://secure.travis-ci.org/jessesquires/DefaultStringConvertible.svg)](http://travis-ci.org/jessesquires/DefaultStringConvertible) [![Version Status](https://img.shields.io/cocoapods/v/DefaultStringConvertible.svg)][podLink] [![license MIT](https://img.shields.io/cocoapods/l/DefaultStringConvertible.svg)][mitLink] [![codecov](https://codecov.io/gh/jessesquires/DefaultStringConvertible/branch/develop/graph/badge.svg)](https://codecov.io/gh/jessesquires/DefaultStringConvertible) [![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20macOS%20%7C%20iOS%20%7C%20watchOS%20%7C%20tvOS-lightgrey.svg)][docsLink] [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
